@@ -5,13 +5,15 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-var db *gorm.DB
+var (
+	db *gorm.DB
+)
 
 type Book struct {
 	gorm.Model
-	Name        string `gorm:**json:*name*`
-	Author      string `json:*author`
-	Publication string `json:*publication*`
+	Name        string `json:"name"`
+	Author      string `json:"author"`
+	Publication string `json:"publication"`
 }
 
 func init() {
@@ -28,6 +30,7 @@ func (b *Book) CreateBook() *Book {
 
 func GetAllBooks() []Book {
 	var Book []Book
+	db.Find(&Book)
 	return Book
 }
 
